@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Premium Cleaning Service",
+    "description": "Our premium cleaning service offers thorough cleaning using eco-friendly products.",
+    "price": 100,
+    "features": [
+      "Utilizes eco-friendly cleaning products to reduce environmental impact",
+      "Provides thorough cleaning for all areas of your home or office",
+      "Staffed by experienced and professional cleaners"
+    ]
+  },
+  {
+    "name": "Basic Cleaning Package",
+    "description": "Our basic cleaning package includes essential cleaning services for your home or office.",
+    "price": 50,
+    "features": [
+      "Covers surface cleaning for all rooms",
+      "Includes dusting of furniture and fixtures",
+      "Vacuuming of floors to remove dirt and debris"
+    ]
+  },
+  {
+    "name": "Deep Cleaning Special",
+    "description": "Experience a deep clean with our special package, leaving your space sparkling clean.",
+    "price": 150,
+    "features": [
+      "Offers deep cleaning for hard-to-reach areas and neglected spaces",
+      "Specialized stain removal techniques for tough stains",
+      "Thorough sanitization to eliminate germs and bacteria"
+    ]
+  },
+  {
+    "name": "Office Cleaning Bundle",
+    "description": "Keep your workplace pristine with our comprehensive office cleaning bundle.",
+    "price": 120,
+    "features": [
+      "Dedicated to maintaining cleanliness in office spaces",
+      "Includes trash disposal and recycling services",
+      "Mopping of floors to maintain a professional appearance"
+    ]
+  },
+  {
+    "name": "Move-In/Out Cleaning",
+    "description": "Ensure a fresh start in your new space or leave your old space spotless with our move-in/out cleaning service.",
+    "price": 200,
+    "features": [
+      "Complete interior cleaning for moving in or out of a space",
+      "Thorough cleaning of appliances such as refrigerators and ovens",
+      "Wall washing to remove marks and stains"
+    ]
+  },
+  {
+    "name": "Weekly Maintenance Plan",
+    "description": "Sign up for our weekly maintenance plan and enjoy a consistently clean environment.",
+    "price": 80,
+    "features": [
+      "Scheduled weekly visits to maintain cleanliness",
+      "Customized cleaning schedule to fit your needs",
+      "Flexible payment options for convenience"
+    ]
+  }
+]

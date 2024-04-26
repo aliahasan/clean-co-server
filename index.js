@@ -7,7 +7,10 @@ const cookieParser = require("cookie-parser");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors())
+app.use(cors({
+    origin: ['http://localhost:5173/' , 'http://localhost:5174/'],
+    credentials: true
+}))
 require("dotenv").config();
 // DB URI
 const uri =
