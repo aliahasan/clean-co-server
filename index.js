@@ -1,16 +1,18 @@
 const express = require("express");
 const app = express();
-const cors = require('cors');
+const cors = require("cors");
 const port = process.env.PORT || 5000;
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-    origin: ['http://localhost:5173/' , 'http://localhost:5174/'],
-    credentials: true
-}))
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+    credentials: true,
+  })
+);
 require("dotenv").config();
 // DB URI
 const uri =
@@ -36,6 +38,7 @@ async function run() {
     app.post("/api/v1/auth/access-token", (req, res) => {
       // creating token and send to the client
       const user = req.body;
+      console.log(user);
       const token = jwt.sign(user, process.env.SECRET_TOKEN, {
         expiresIn: "1h",
       });
@@ -48,8 +51,7 @@ async function run() {
         .send({ success: true });
     });
 
-    // middleware
-    // veryfy token
+     // middleware ..... verify token
     const verifyToken = (req, res, next) => {
       const { token } = req.cookies;
       if (!token) {
@@ -64,8 +66,23 @@ async function run() {
       });
     };
 
-    app.get("/api/v1/services", verifyToken, async (req, res) => {
-      const cursor = serviceCollection.find();
+    // get data by category or get data all
+    // get data by sorting
+    app.get("/api/v1/services", async (req, res) => {
+      let queryData = {};
+      let sortInfo = {};
+      const category = req.query?.category;
+      const sortField = req.query.sortField;
+      const sortOrder = req.query.sortOrder;
+      if (category) {
+        queryData.category = category;
+      }
+
+      if (sortField && sortOrder) {
+        sortInfo[sortField] = sortOrder;
+      }
+
+      const cursor = serviceCollection.find(queryData).sort(sortInfo);
       const result = await cursor.toArray();
       res.send(result);
     });
@@ -110,7 +127,7 @@ async function run() {
 run().catch(console.log);
 
 app.get("/", (req, res) => {
-  res.send("Hello world");
+  res.send("server is running");
 });
 
 app.listen(port, () => {
