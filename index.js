@@ -37,7 +37,6 @@ async function run() {
     // middleware ..... verify token--------------------
     const verifyToken = (req, res, next) => {
       const token = req.cookies?.token;
-      console.log(token);
       if (!token) {
         return res
           .status(401)
@@ -61,7 +60,6 @@ async function run() {
       const token = jwt.sign(user, process.env.SECRET_TOKEN, {
         expiresIn: "1h",
       });
-      console.log(token);
       res
         .cookie("token", token, {
           httpOnly: true,
@@ -110,6 +108,7 @@ async function run() {
       res.send(result);
     });
 
+    // user specific bookings
     app.get("/api/v1/user/bookings", verifyToken, async (req, res) => {
       let query = {};
       const queryEmail = req.query.email;
@@ -121,6 +120,13 @@ async function run() {
         query.email = queryEmail;
       }
       const result = await bookingCollection.find(query).toArray();
+      res.send(result);
+    });
+
+    app.get("/api/v1/services/:serviceId", async (req, res) => {
+      const id = req.params.serviceId;
+      const query = { _id: new ObjectId(id) };
+      const result = await serviceCollection.findOne(query);
       res.send(result);
     });
 
